@@ -55,5 +55,5 @@ target_link_libraries(QSqlCipherDriverPlugin
 )
 target_include_directories(QSqlCipherDriverPlugin
     PRIVATE
-        ../3rdparty/sqlcipher
+        3rdparty/sqlcipher
 )

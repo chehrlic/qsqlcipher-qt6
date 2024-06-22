@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 project(QSqlCipher)
-message(STATUS "Building QSqlCipher plugin for Qt (SqlCipher version 4.6.0 based on SQLite 3.45.3)")
+message(STATUS "Building QSqlCipher plugin for Qt (SqlCipher version 4.6.0 based on SQLite 3.45.3, libtomcrypt version 1.18.2)")
 find_package(Qt6 REQUIRED COMPONENTS Core Sql)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
@@ -77,28 +77,28 @@ target_compile_definitions(QSqlCipherDriverPlugin
         SQLITE_ENABLE_MATH_FUNCTIONS
         SQLITE_ENABLE_RTREE
         SQLITE_OMIT_COMPLETE
-        $<$<BOOL:HAVE_POSIX_FALLOCATE>:HAVE_POSIX_FALLOCATE>
-        $<$<BOOL:HAVE_FCHMOD>:HAVE_FCHMOD>
-        $<$<BOOL:HAVE_FCHOWN>:HAVE_FCHOWN>
-        $<$<BOOL:HAVE_GMTIME_R>:HAVE_GMTIME_R>
-        $<$<BOOL:HAVE_ISNAN>:HAVE_ISNAN>
-        $<$<BOOL:HAVE_LOCALTIME_R>:HAVE_LOCALTIME_R>
-        $<$<BOOL:HAVE_LOCALTIME_S>:HAVE_LOCALTIME_S>
-        $<$<BOOL:HAVE_LSTAT>:HAVE_LSTAT>
-        $<$<BOOL:HAVE_MALLOC_USABLE_SIZE>:HAVE_MALLOC_USABLE_SIZE>
-        $<$<BOOL:HAVE_MREMAP>:HAVE_MREMAP>
-        $<$<BOOL:HAVE_PREAD>:HAVE_PREAD>
-        $<$<BOOL:HAVE_PREAD64>:HAVE_PREAD64>
-        $<$<BOOL:HAVE_PWRITE>:HAVE_PWRITE>
-        $<$<BOOL:HAVE_PWRITE64>:HAVE_PWRITE64>
-        $<$<BOOL:HAVE_READLINK>:HAVE_READLINK>
-        $<$<BOOL:HAVE_STRCHRNUL>:HAVE_STRCHRNUL>
-        $<$<BOOL:HAVE_STRERROR_R>:HAVE_STRERROR_R>
-        $<$<BOOL:HAVE_USLEEP>:HAVE_USLEEP>
-        $<$<BOOL:HAVE_UTIME>:HAVE_UTIME>
-        $<$<BOOL:HAVE_INTTYPES_H>:HAVE_INTTYPES_H>
-        $<$<BOOL:HAVE_MALLOC_H>:HAVE_MALLOC_H>
-        $<$<BOOL:HAVE_STDINT_H>:HAVE_STDINT_H>
+        $<$<BOOL:${HAVE_POSIX_FALLOCATE}>:HAVE_POSIX_FALLOCATE>
+        $<$<BOOL:${HAVE_FCHMOD}>:HAVE_FCHMOD>
+        $<$<BOOL:${HAVE_FCHOWN}>:HAVE_FCHOWN>
+        $<$<BOOL:${HAVE_GMTIME_R}>:HAVE_GMTIME_R>
+        $<$<BOOL:${HAVE_ISNAN}>:HAVE_ISNAN>
+        $<$<BOOL:${HAVE_LOCALTIME_R}>:HAVE_LOCALTIME_R>
+        $<$<BOOL:${HAVE_LOCALTIME_S}>:HAVE_LOCALTIME_S>
+        $<$<BOOL:${HAVE_LSTAT}>:HAVE_LSTAT>
+        $<$<BOOL:${HAVE_MALLOC_USABLE_SIZE}>:HAVE_MALLOC_USABLE_SIZE>
+        $<$<BOOL:${HAVE_MREMAP}>:HAVE_MREMAP>
+        $<$<BOOL:${HAVE_PREAD}>:HAVE_PREAD>
+        $<$<BOOL:${HAVE_PREAD64}>:HAVE_PREAD64>
+        $<$<BOOL:${HAVE_PWRITE}>:HAVE_PWRITE>
+        $<$<BOOL:${HAVE_PWRITE64}>:HAVE_PWRITE64>
+        $<$<BOOL:${HAVE_READLINK}>:HAVE_READLINK>
+        $<$<BOOL:${HAVE_STRCHRNUL}>:HAVE_STRCHRNUL>
+        $<$<BOOL:${HAVE_STRERROR_R}>:HAVE_STRERROR_R>
+        $<$<BOOL:${HAVE_USLEEP}>:HAVE_USLEEP>
+        $<$<BOOL:${HAVE_UTIME}>:HAVE_UTIME>
+        $<$<BOOL:${HAVE_INTTYPES_H}>:HAVE_INTTYPES_H>
+        $<$<BOOL:${HAVE_MALLOC_H}>:HAVE_MALLOC_H>
+        $<$<BOOL:${HAVE_STDINT_H}>:HAVE_STDINT_H>
         $<$<CONFIG:Release>:NDEBUG>
 )
 target_include_directories(QSqlCipherDriverPlugin

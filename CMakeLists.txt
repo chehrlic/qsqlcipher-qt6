@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.20)
 project(QSqlCipher)
 message(STATUS "Building QSqlCipher plugin for Qt (SqlCipher version 4.6.0 based on SQLite 3.45.3, libtomcrypt version 1.18.2)")
-find_package(Qt6 REQUIRED COMPONENTS Core Sql)
+find_package(Qt6 REQUIRED COMPONENTS Core Sql BuildInternals)
+qt_standard_project_setup()
+qt_prepare_standalone_project()
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -532,3 +534,6 @@ target_include_directories(QSqlCipherDriverPlugin
     PRIVATE
         3rdparty/libtomcrypt/src/headers
 )
+
+# install
+install(TARGETS QSqlCipherDriverPlugin DESTINATION ${QT_BUILD_INTERNALS_RELOCATABLE_INSTALL_PREFIX}/plugins/sqldrivers)

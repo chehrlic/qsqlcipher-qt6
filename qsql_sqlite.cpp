@@ -39,7 +39,11 @@ Q_DECLARE_METATYPE(sqlite3_stmt*)
 
 QT_BEGIN_NAMESPACE
 
-Q_STATIC_LOGGING_CATEGORY(lcSqlite, "qt.sql.sqlite")
+#if QT_VERSION < QT_VERSION_CHECK(6, 8, 0)
+    Q_LOGGING_CATEGORY(lcSqlite, "qt.sql.sqlite")
+#else
+    Q_STATIC_LOGGING_CATEGORY(lcSqlite, "qt.sql.sqlite")
+#endif
 
 using namespace Qt::StringLiterals;
 

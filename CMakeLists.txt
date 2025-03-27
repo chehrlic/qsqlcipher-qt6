@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 3.20)
 project(QSqlCipher)
 message(STATUS "Building QSqlCipher plugin for Qt (SqlCipher version 4.6.1 based on SQLite 3.46.1, libtomcrypt version 1.18.2)")
-find_package(Qt6 REQUIRED COMPONENTS Core Sql BuildInternals)
+find_package(Qt6 REQUIRED COMPONENTS Core SqlPrivate BuildInternals)
 qt_standard_project_setup()
 qt_prepare_standalone_project()
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
+
+set(PLUGIN_INSTALL_PREFIX ${QT_BUILD_INTERNALS_RELOCATABLE_INSTALL_PREFIX} CACHE STRING "plugin install prefix")
 # All source files are copied from official Qt6 qsqlite plugin directory
 # smain.cpp and sqlite.json are modified to use QSqlCipherDriverPlugin class instead QSQLiteDriverPlugin
 # and QSQLCIPHER plugin key instead QSQLITE
@@ -54,11 +56,13 @@ target_compile_definitions(QSqlCipherDriverPlugin
         QT_NO_FOREACH
         QT_NO_JAVA_STYLE_ITERATORS
         QT_USE_QSTRINGBUILDER
+        SQLITE_EXTRA_INIT=sqlcipher_extra_init
+        SQLITE_EXTRA_SHUTDOWN=sqlcipher_extra_shutdown
 )
 target_link_libraries(QSqlCipherDriverPlugin
     PRIVATE
-        Qt::Core
-        Qt::SqlPrivate
+        Qt6::Core
+        Qt6::SqlPrivate
 )
 # sqlcipher
 target_sources(QSqlCipherDriverPlugin
@@ -537,4 +541,4 @@ target_include_directories(QSqlCipherDriverPlugin
 )
 
 # install
-install(TARGETS QSqlCipherDriverPlugin DESTINATION ${QT_BUILD_INTERNALS_RELOCATABLE_INSTALL_PREFIX}/plugins/sqldrivers)
+install(TARGETS QSqlCipherDriverPlugin DESTINATION ${PLUGIN_INSTALL_PREFIX}/plugins/sqldrivers)

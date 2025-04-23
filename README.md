@@ -3,7 +3,7 @@
 This is a Qt6 plugin for [SQLCipher](https://www.zetetic.net/sqlcipher). Since SQLCipher is a drop-in replacement for SQLite, the Qt SQLite driver is
 used as the base for this plugin.
 The current implementation consists of
-  * SQLCipher 4.6.1 (based in SQLite 3.46.1) as amalgamation from https://github.com/chehrlic/sqlcipher-amalgamation
+  * SQLCipher 4.7.0 (based in SQLite 3.49.1) as amalgamation from https://github.com/chehrlic/sqlcipher-amalgamation
   * libtomcrypt 1.18.2 from https://github.com/libtom/libtomcrypt
   * Qt SQLite plugin for Qt 6.8, modified to compile with Qt 6.6 and sligthly changed so it can be loaded as separate plugin ("QSQLCIPHER")
   
@@ -19,6 +19,8 @@ Clone this repository and set up the Qt environment.
   * for Linux: cmake ..\
   * cmake --build .
   * cmake --install .
+For windows you have to build the debug and the release plugin (linked against the respective Qt library) by passing '-DCMAKE_BUILD_TYPE=Debug'
+or '-DCMAKE_BUILD_TYPE=Release' to the first cmake call.
   
 ## Use within your Qt programm
 Load the QSqlCipher plugin with [QSqlDatabase::addDatabase("QSQLCIPHER")](https://doc.qt.io/qt-6/qsqldatabase.html#addDatabase).

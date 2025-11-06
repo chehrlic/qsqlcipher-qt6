@@ -3,9 +3,9 @@
 This is a Qt6 plugin for [SQLCipher](https://www.zetetic.net/sqlcipher). Since SQLCipher is a drop-in replacement for SQLite, the Qt SQLite driver is
 used as the base for this plugin.
 The current implementation consists of
-  * SQLCipher 4.9.0 (based in SQLite 3.49.2) as amalgamation from https://github.com/chehrlic/sqlcipher-amalgamation
+  * SQLCipher 4.11.0 (based in SQLite 3.50.4) as amalgamation from https://github.com/chehrlic/sqlcipher-amalgamation
   * libtomcrypt 1.18.2 from https://github.com/libtom/libtomcrypt
-  * Qt SQLite plugin for Qt 6.8, modified to compile with Qt 6.6 and sligthly changed so it can be loaded as separate plugin ("QSQLCIPHER")
+  * Qt SQLite plugin for Qt 6.8 and above, modified to compile with Qt 6.6 and sligthly changed so it can be loaded as separate plugin ("QSQLCIPHER")
   
 ## Compilation and Installation
 
